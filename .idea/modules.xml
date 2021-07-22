@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReadBook.iml" filepath="$PROJECT_DIR$/.idea/modules/ReadBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ReadBook.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ReadBook.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bookshelf/ReadBook.bookshelf.iml" filepath="$PROJECT_DIR$/.idea/modules/bookshelf/ReadBook.bookshelf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bookstore/ReadBook.bookstore.iml" filepath="$PROJECT_DIR$/.idea/modules/bookstore/ReadBook.bookstore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/ReadBook.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/ReadBook.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user/ReadBook.user.iml" filepath="$PROJECT_DIR$/.idea/modules/user/ReadBook.user.iml" />
+    </modules>
+  </component>
+</project>

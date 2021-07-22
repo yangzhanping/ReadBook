@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./common/libs/ZHConverter.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/common/libs/ZHConverter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
