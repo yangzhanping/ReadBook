@@ -9,4 +9,6 @@
     <dimen name="shelf_bookName_size">16sp</dimen>
     <dimen name="shelf_newestHint_size">14sp</dimen>
     <dimen name="shelf_newestDate_size">12sp</dimen>
+    //
+    <dimen name="set_ic_wh">23dp</dimen>
 </resources>

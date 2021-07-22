@@ -10,5 +10,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:fastScrollTrackDrawable">@color/color_gray</item>
+        <item name="android:fastScrollThumbDrawable">@mipmap/lv_thumb</item>
     </style>
 </resources>

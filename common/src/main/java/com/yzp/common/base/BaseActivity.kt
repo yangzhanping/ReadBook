@@ -1,6 +1,7 @@
 package com.yzp.common.base
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
@@ -15,8 +16,17 @@ import pub.devrel.easypermissions.EasyPermissions
 
 open abstract class BaseActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
+    var settingOnClickValidFrom = 0
+    var settingOnClickValidTo = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val dm = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(dm)
+        settingOnClickValidFrom = dm.widthPixels / 2
+        settingOnClickValidTo = dm.heightPixels / 4 * 3
+
         initView()
         initData()
     }

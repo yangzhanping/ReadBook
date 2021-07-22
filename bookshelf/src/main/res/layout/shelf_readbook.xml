@@ -38,33 +38,46 @@
         android:background="@color/color_gray"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <LinearLayout
+                android:id="@+id/shelf_iv_back"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/shelf_larrow_white" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/shelf_tv_book_list"
+                android:id="@+id/shelf_tv_bookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="15dp"
-                android:text="目录"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:textColor="@color/sys_protect_eye_word"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/shelf_tv_chapter_sort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="倒序"
-                android:textColor="@color/sys_protect_eye_word"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/shelf_iv_sort"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:tag="降序"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/shelf_ic_sort_dsc" />
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/shelf_lv_chapter_list"
@@ -72,6 +85,8 @@
             android:layout_height="match_parent"
             android:divider="@color/alpha"
             android:fadingEdge="none"
+            android:fastScrollAlwaysVisible="true"
+            android:fastScrollEnabled="true"
             android:listSelector="@color/alpha"
             android:overScrollMode="never" />
     </LinearLayout>

@@ -1,7 +1,10 @@
 package com.yzp.common.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,6 +20,8 @@ abstract class CommonAdapter<T>(
 
     //使用接口回调点击事件
     private var mItemLongClickListener: OnItemLongClickListener? = null
+
+    private var mItemTouchListener: View.OnTouchListener? = null
 
     init {
         mInflater = LayoutInflater.from(mContext)
@@ -45,6 +50,7 @@ abstract class CommonAdapter<T>(
         )
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //绑定数据
         bindData(holder, mData[position], position)
@@ -65,6 +71,12 @@ abstract class CommonAdapter<T>(
                     mData[position],
                     position
                 )
+            }
+        }
+
+        mItemTouchListener?.let {
+            holder.itemView.setOnTouchListener { v, event ->
+                mItemTouchListener!!.onTouch(v, event)
             }
         }
     }
@@ -88,5 +100,9 @@ abstract class CommonAdapter<T>(
 
     fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
         this.mItemLongClickListener = itemLongClickListener
+    }
+
+    fun setmOnTouchListener(itemTouchListener: View.OnTouchListener) {
+        this.mItemTouchListener = itemTouchListener
     }
 }

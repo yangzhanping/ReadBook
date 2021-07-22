@@ -1,5 +1,6 @@
 package com.yzp.bookshelf.ui.activity
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Handler
@@ -30,6 +31,7 @@ import com.yzp.common.db.BookDaoOpe
 import com.yzp.common.db.ChapterDaoOpe
 import com.yzp.common.db.bean.Book
 import com.yzp.common.db.bean.Chapter
+import com.yzp.common.utils.DateHelper
 import com.yzp.common.utils.StringHelper
 import com.yzp.common.utils.ThreadManager
 import java.util.*
@@ -56,6 +58,14 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
 
     private var chapterList: MutableList<Chapter>? = null
 
+    //上次点击时间
+    private val lastOnClickTime: Long = 0
+
+    //双击确认时间
+    private val doubleOnClickConfirmTime: Long = 200
+
+    private var currentY = 0f
+
     override fun initView() {
         binding = ShelfReadbookBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -69,8 +79,9 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
     }
 
     private fun initChapterSort() {
-        binding.shelfTvChapterSort.setOnClickListener {
-            if (binding.shelfTvChapterSort.text.equals("倒序")) {
+        binding.shelfIvSort.setOnClickListener {
+            if (binding.shelfIvSort.tag.equals("降序")) {
+                binding.shelfIvSort.setBackgroundResource(R.mipmap.shelf_ic_sort_asc)
                 chapterList!!.reverse()
                 if (chapterAdapter != null) {
                     chapterAdapter!!.setCurrentPosition(chapterList!!.size - book!!.historyChapterNum - 1)
@@ -79,8 +90,9 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
                         binding.shelfLvChapterList.height / 2
                     )
                 }
-                binding.shelfTvChapterSort.text = "升序"
+                binding.shelfIvSort.tag = "升序"
             } else {
+                binding.shelfIvSort.setBackgroundResource(R.mipmap.shelf_ic_sort_dsc)
                 chapterList!!.reverse()
                 if (chapterAdapter != null) {
                     chapterAdapter!!.setCurrentPosition(book!!.historyChapterNum)
@@ -89,7 +101,7 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
                         binding.shelfLvChapterList.height / 2
                     )
                 }
-                binding.shelfTvChapterSort.text = "倒序"
+                binding.shelfIvSort.tag = "降序"
             }
         }
     }
@@ -98,6 +110,9 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
      * 抽屉布局-目录
      */
     private fun initDrawer() {
+        binding.shelfIvBack.setOnClickListener {
+            binding.shelfReadDl.closeDrawer(GravityCompat.START)
+        }
         binding.shelfReadDl.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {
             }
@@ -160,9 +175,11 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
     override fun initData() {
         book = intent.getParcelableExtra("book")
         //
-        book?.let { presenter.requestChaptersData(this, it) }
-        //
-        mLinearLayoutManager!!.scrollToPositionWithOffset(book!!.historyChapterNum, 0)
+        book?.let {
+            binding.shelfTvBookName.text = book!!.bookName
+            presenter.requestChaptersData(this, it)
+            mLinearLayoutManager!!.scrollToPositionWithOffset(it.historyChapterNum, 0)
+        }
     }
 
     override fun onDestroy() {
@@ -194,13 +211,27 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
     /**
      * 设置内容数据
      */
+    @SuppressLint("ClickableViewAccessibility")
     override fun setContentData(chapterList: MutableList<Chapter>) {
         contentAdapter = ContentAdapter(this, chapterList)
         binding.shelfRvContent.adapter = contentAdapter
+
+        contentAdapter!!.setmOnTouchListener { v, event ->
+            currentY = event.rawY
+            false
+        }
+
         contentAdapter!!.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(obj: Any?, position: Int) {
-                autoScrollOpening = false
-                showSetting()
+                if (currentY > settingOnClickValidFrom && currentY < settingOnClickValidTo) {
+                    val curOnClickTime: Long = DateHelper.getLongDate()
+                    if (curOnClickTime - lastOnClickTime < doubleOnClickConfirmTime) {
+                        autoScrollOpening = false
+                        autoScroll()
+                    } else {
+                        showSetting()
+                    }
+                }
             }
         })
     }
@@ -490,13 +521,7 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
                     SysManager.getSetting(this@ShelfReadBookActivity)!!
                         .readBgColor
                 )
-            binding.shelfTvBookList.setTextColor(
-                resources.getColor(
-                    SysManager.getSetting(this@ShelfReadBookActivity)!!
-                        .readWordColor
-                )
-            )
-            binding.shelfTvChapterSort.setTextColor(
+            binding.shelfTvBookName.setTextColor(
                 resources.getColor(
                     SysManager.getSetting(this@ShelfReadBookActivity)!!
                         .readWordColor
@@ -511,10 +536,7 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
             binding.shelfReadDl
                 .setBackgroundResource(R.color.sys_night_bg)
 
-            binding.shelfTvBookList.setTextColor(
-                resources.getColor(R.color.sys_night_word)
-            )
-            binding.shelfTvChapterSort.setTextColor(
+            binding.shelfTvBookName.setTextColor(
                 resources.getColor(R.color.sys_night_word)
             )
             binding.shelfChapterListView
