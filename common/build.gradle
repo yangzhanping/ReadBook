@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'org.greenrobot.greendao'
+}
+
+def androidID = rootProject.ext.androidID;
+
+android {
+    compileSdkVersion androidID.compileSdkVersion
+    buildToolsVersion androidID.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidID.minSdkVersion
+        targetSdkVersion androidID.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        multiDexEnabled true
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "debugUrl", "\"${url.debugUrl}\"")
+        }
+        release {
+            buildConfigField("String", "releaseUrl", "\"${url.releaseUrl}\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets.main {
+//        jni.srcDirs = []
+        jniLibs.srcDir "libs"
+    }
+}
+
+greendao {
+    //指定数据库schema版本号，迁移等操作会用到
+    schemaVersion 1
+    //dao的包名，包名默认是entity所在的包；
+    daoPackage 'com.yzp.common.db.dao'
+    //生成数据库文件的目录;
+    targetGenDir 'src/main/java'
+}
+
+dependencies {
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    general_dependenciesID.each { k, v ->
+        if (k == "arouter-compiler" ||
+                k == "butterknife-compiler") {
+            kapt v
+        } else {
+            implementation v
+        }
+    }
+
+    other_dependenciesID.each { k, v ->
+        if (k == "leakcanary-android") {
+            debugImplementation v
+        } else {
+            api v
+        }
+    }
+    //简体繁体
+    api files("libs/ZHConverter.jar")
+}

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">嘉泽小说</string>
+
+    <string name="app_shelf">书架</string>
+    <string name="app_store">书城</string>
+    <string name="app_user">我的</string>
+</resources>

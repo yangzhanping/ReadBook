@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="color_light_black">#5000</color>
+    <!-- title 半透明背景颜色 -->
+    <color name="color_title_bg">#CCFFFFFF</color>
+    <color name="color_gray">#9a9a9a</color>
+
+    <color name="sys_line"> #cccccc</color>
+    <color name="sys_bg2">#f5f5f5</color>
+    <color name="sys_suggest_line">#d6d7d6</color>
+
+    <color name="sys_home_tab_select">#ef7542</color>
+
+    <!-- 透明 -->
+    <color name="alpha">#00000000</color>
+
+    <color name="sys_dialog_setting_bg">#292c29</color>
+    <color name="sys_dialog_setting_line">#393839</color>
+    <color name="sys_dialog_setting_word">#636563</color>
+    <color name="sys_dialog_setting_word_red">#e8554d</color>
+    <color name="sys_dialog_setting_word_bright">#d6d7d6</color>
+
+    <color name="sys_common_bg">#f5f4f0</color>
+    <color name="sys_common_word">#313031</color>
+    <color name="sys_protect_eye_bg">#ceebce</color>
+    <color name="sys_breen_bg">#b5bd9a</color>
+    <color name="sys_blue_deep_bg">#001c29</color>
+    <color name="sys_protect_eye_word">#313031</color>
+
+    <color name="sys_night_bg">#393431</color>
+    <color name="sys_night_word">#94928c</color>
+
+    <color name="sys_blue_deep_word">#637079</color>
+
+    <color name="sys_leather_word">#313031</color>
+
+    <color name="sys_breen_word">#313031</color>
+
+    <color name="sys_font_example_bg">#adaaad</color>
+    <color name="sys_font_use_btn">#31cf4a</color>
+    <color name="sys_font_using_btn">#9c9a9c</color>
+</resources>

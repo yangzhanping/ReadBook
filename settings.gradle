@@ -1,0 +1,6 @@
+include ':common'
+include ':user'
+include ':bookstore'
+include ':bookshelf'
+include ':app'
+rootProject.name = "ReadBook"

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shelf_read_dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.classic.common.MultipleStatusView
+            android:id="@+id/multipleStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyView="@layout/shelf_layout_empty_view"
+            app:errorView="@layout/error_view"
+            app:loadingView="@layout/loading_view"
+            app:noNetworkView="@layout/no_network_view">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shelf_rv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/alpha"
+                android:dividerHeight="30dp"
+                android:fadingEdge="none"
+                android:listSelector="@color/alpha"
+                android:overScrollMode="never" />
+        </com.classic.common.MultipleStatusView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/shelf_chapter_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/color_gray"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shelf_tv_book_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="目录"
+                android:textColor="@color/sys_protect_eye_word"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/shelf_tv_chapter_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="倒序"
+                android:textColor="@color/sys_protect_eye_word"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/shelf_lv_chapter_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/alpha"
+            android:fadingEdge="none"
+            android:listSelector="@color/alpha"
+            android:overScrollMode="never" />
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

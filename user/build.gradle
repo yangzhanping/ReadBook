@@ -1,0 +1,80 @@
+if (isRelease) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: "com.android.application"
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def androidID = rootProject.ext.androidID;
+
+android {
+    compileSdkVersion androidID.compileSdkVersion
+    buildToolsVersion androidID.buildToolsVersion
+
+    defaultConfig {
+        if (!isRelease) {
+            applicationId appID.user
+        }
+        minSdkVersion androidID.minSdkVersion
+        targetSdkVersion androidID.targetSdkVersion
+        versionCode androidID.versionCode
+        versionName androidID.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        buildFeatures {
+            viewBinding = true
+        }
+        multiDexEnabled true
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "debugUrl", "\"${url.debugUrl}\"")
+        }
+        release {
+            buildConfigField("String", "releaseUrl", "\"${url.releaseUrl}\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            if (isRelease) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    general_dependenciesID.each { k, v ->
+        if (k == "arouter-compiler" ||
+                k == "butterknife-compiler") {
+            kapt v
+        } else {
+            implementation v
+        }
+    }
+    api project(':common')
+}

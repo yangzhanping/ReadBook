@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+def androidID = rootProject.ext.androidID;
+
+android {
+    compileSdkVersion androidID.compileSdkVersion
+    buildToolsVersion androidID.buildToolsVersion
+
+    defaultConfig {
+        applicationId appID.app
+        minSdkVersion androidID.minSdkVersion
+        targetSdkVersion androidID.targetSdkVersion
+        versionCode androidID.versionCode
+        versionName androidID.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        buildFeatures {
+            viewBinding = true
+        }
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "debugUrl", "\"${url.debugUrl}\"")
+        }
+        release {
+            buildConfigField("String", "releaseUrl", "\"${url.releaseUrl}\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    general_dependenciesID.each { k, v ->
+        if (k == "arouter-compiler" ||
+                k == "butterknife-compiler") {
+            kapt v
+        } else {
+            implementation v
+        }
+    }
+
+    if (isRelease) {
+        implementation project(":bookshelf")
+        implementation project(":bookstore")
+        implementation project(":user")
+    } else {
+        implementation project(":common")
+    }
+}
