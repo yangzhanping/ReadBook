@@ -78,6 +78,9 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
         initViewSet(SysManager.getSetting(this)!!.dayStyle)
     }
 
+    /**
+     * 初始化目录排序功能
+     */
     private fun initChapterSort() {
         binding.shelfIvSort.setOnClickListener {
             if (binding.shelfIvSort.tag.equals("降序")) {
@@ -279,7 +282,29 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
                 progress,
                 {
                     //返回
-                    finish()
+                    if (StringHelper.isEmpty(book!!.id)) {
+                        DialogCreator.createCommonDialog(this,
+                            getString(R.string.tip),
+                            getString(R.string.no_add_tips),
+                            true,
+                            { dialog, which ->
+                                book!!.historyChapterNum =
+                                    mLinearLayoutManager!!.findLastVisibleItemPosition()
+                                BookDaoOpe.getInstance().insertData(this, book!!)
+                                for (chapter in chapterList!!) {
+                                    chapter.id = UUID.randomUUID().toString()
+                                    chapter.bookId = book!!.id
+                                }
+                                ChapterDaoOpe.getInstance().insertDatas(this, chapterList!!)
+                                finish()
+                            }
+                        ) { dialog, which ->
+                            finish()
+                            dialog.dismiss()
+                        }
+                    } else {
+                        finish()
+                    }
                 },
                 {
                     //上一章
@@ -317,7 +342,7 @@ class ShelfReadBookActivity : BaseActivity(), ReadBookContract.View {
                         progress: Int,
                         fromUser: Boolean
                     ) {
-                        //阅读进度
+//                        //阅读进度
                         val chapterNum: Int =
                             (mLinearLayoutManager!!.itemCount - 1) * progress / 100
                         mLinearLayoutManager!!.scrollToPositionWithOffset(

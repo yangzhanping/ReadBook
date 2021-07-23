@@ -80,6 +80,9 @@ class SearchBookPresenter : BasePresenter<SearchBookContract.View>(),
                     }
 
                     override fun onError(e: Throwable) {
+                        mRootView?.apply {
+                            dismissLoading()
+                        }
                         Logger.e("error-> " + e.message)
                     }
                 })
