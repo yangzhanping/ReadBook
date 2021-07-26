@@ -29,6 +29,9 @@ class ShelfSearchBookActivity : BaseActivity(), SearchBookContract.View {
     private var historyAdapter: SearchHistoryAdapter? = null
     private var searchBookAdapter: SearchBookAdapter? = null
 
+    private val suggestion =
+        arrayOf("帝霸", "逆天邪神", "万古第一神", "九星霸体诀", "明天下", "生活系男神", "元尊", "超神机械师", "终极斗罗")
+
     override fun onBackPressed() {
         if (StringHelper.isEmpty(searchKey)) {
             super.onBackPressed()
@@ -63,7 +66,6 @@ class ShelfSearchBookActivity : BaseActivity(), SearchBookContract.View {
     }
 
     private fun initSuggestion() {
-        val suggestion = arrayOf("终极斗罗", "左道倾天", "诡秘之主", "元尊", "天下第九", "从红月开始", "万族之劫", "大奉打更人")
         binding.tgSuggestBook.setTags(suggestion.toList())
         binding.tgSuggestBook.setOnTagClickListener {
             binding.etSearchKey.setText(it)
@@ -152,11 +154,11 @@ class ShelfSearchBookActivity : BaseActivity(), SearchBookContract.View {
     }
 
     override fun showLoading() {
-        binding.pbLoading.visibility = View.VISIBLE
+        binding.multipleStatusView.showLoading()
     }
 
     override fun dismissLoading() {
-        binding.pbLoading.visibility = View.GONE
+        binding.multipleStatusView.showContent()
     }
 
     private fun search(key: String) {

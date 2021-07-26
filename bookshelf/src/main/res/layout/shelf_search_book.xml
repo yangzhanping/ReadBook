@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multipleStatusView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sys_bg2"
-    android:fitsSystemWindows="true">
+    app:emptyView="@layout/shelf_layout_empty_view"
+    app:errorView="@layout/error_view"
+    app:loadingView="@layout/loading_view"
+    app:noNetworkView="@layout/no_network_view">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/sys_bg2"
         android:orientation="vertical">
 
         <include
@@ -58,13 +62,25 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门搜索"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
             <me.gujun.android.taggroup.TagGroup
                 android:id="@+id/tg_suggest_book"
                 style="@style/TagGroup"
                 android:layout_marginTop="10dp"
                 app:atg_borderColor="@color/sys_suggest_line"
                 app:atg_horizontalPadding="10dp"
-                app:atg_textColor="@color/black"
+                app:atg_textColor="@color/color_gray"
                 app:atg_textSize="14sp"
                 app:atg_verticalSpacing="10dp" />
 
@@ -74,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -90,6 +107,7 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/ll_history_view"
             android:layout_width="match_parent"
@@ -98,6 +116,18 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="历史搜索"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/lv_history_list"
@@ -119,8 +149,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@mipmap/shelf_ic_clear" />
 
                 <TextView
@@ -128,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:text="清空历史记录"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -138,13 +168,6 @@
             android:layout_height="match_parent"
             android:fadingEdge="none"
             android:overScrollMode="never"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/pb_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-</RelativeLayout>
+</com.classic.common.MultipleStatusView>
