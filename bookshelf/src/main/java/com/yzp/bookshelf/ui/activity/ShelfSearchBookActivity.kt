@@ -43,7 +43,11 @@ class ShelfSearchBookActivity : BaseActivity(), SearchBookContract.View {
 
         binding.title.tvTitleText.text = "搜索"
         binding.title.llTitleBack.setOnClickListener {
-            finish()
+            if (StringHelper.isEmpty(searchKey)) {
+                finish()
+            } else {
+                binding.etSearchKey.setText("")
+            }
         }
         binding.tvSearchConform.setOnClickListener {
             search(searchKey)

@@ -9,6 +9,7 @@ import com.yzp.common.adapter.CommonAdapter
 import com.yzp.common.adapter.OnItemClickListener
 import com.yzp.common.adapter.ViewHolder
 import com.yzp.common.arouter.ArouterUtils
+import com.yzp.common.db.BookDaoOpe
 import com.yzp.common.db.bean.Book
 import com.yzp.common.image.GlideUtil
 
@@ -35,6 +36,7 @@ class ShelfAdapter(var context: Context, private var bookList: MutableList<Book>
         GlideUtil.loadImage(context, itemData?.coverUrl, holder.getView(R.id.shelf_bookCover))
         //item click
         holder.setOnItemClickListener(listener = View.OnClickListener {
+            BookDaoOpe.getInstance().updateSort(context, itemData)
             ArouterUtils.navigationActivity("/bookshelf/ShelfReadBookActivity", itemData)
         })
     }

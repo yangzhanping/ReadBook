@@ -25,7 +25,13 @@ class BookDaoOpe private constructor() {
      */
     fun insertData(context: Context?, book: Book) {
         book.id = UUID.randomUUID().toString()
-        book.sortCode = countBookTotalNum(context!!).toInt() + 1
+
+        var bookList = queryAll(context)
+        if (bookList!!.size > 0) {
+            book.sortCode = bookList[0].sortCode + 1
+        } else {
+            book.sortCode = 1
+        }
         DbManager.getInstance(context!!)?.getDaoSession(context)?.bookDao?.insert(book)
     }
 
@@ -36,6 +42,19 @@ class BookDaoOpe private constructor() {
      * @param book
      */
     fun saveData(context: Context?, book: Book) {
+        DbManager.getInstance(context!!)?.getDaoSession(context)?.bookDao?.save(book)
+    }
+
+    /**
+     * 添加数据至数据库
+     * @param context
+     * @param book
+     */
+    fun updateSort(context: Context?, book: Book) {
+        var bookList = queryAll(context)
+        if (bookList!!.size > 0) {
+            book.sortCode = bookList[0].sortCode + 1
+        }
         DbManager.getInstance(context!!)?.getDaoSession(context)?.bookDao?.save(book)
     }
 
@@ -95,10 +114,5 @@ class BookDaoOpe private constructor() {
                     BookDao.Properties.Source.eq(book.source)
                 )
         return builder?.build()?.unique()
-    }
-
-    fun countBookTotalNum(context: Context): Long {
-        return DbManager.getInstance(context!!)?.getDaoSession(context)?.bookDao
-            ?.queryBuilder()!!.count()
     }
 }

@@ -29,11 +29,16 @@ class ReadBookPresenter : BasePresenter<ReadBookContract.View>(), ReadBookContra
      *获取所有章节
      */
     override fun requestChaptersData(context: Context, mBook: Book) {
+        //书架中的书籍不在重复更新内容（修复历史记录更新为0的情况）
+        var isInitContent = false
         if (!StringHelper.isEmpty(mBook.id)) {
             val chapterList = ChapterDaoOpe.getInstance().queryAll(context, mBook.id)
-            mRootView?.apply {
-                setDrawerData(chapterList!!)
-                setContentData(chapterList!!)
+            if (chapterList!!.size > 0) {
+                isInitContent = true
+                mRootView?.apply {
+                    setDrawerData(chapterList!!)
+                    setContentData(chapterList!!)
+                }
             }
         }
         readBookModel.requestData(mBook.chapterUrl).map {
@@ -81,8 +86,7 @@ class ReadBookPresenter : BasePresenter<ReadBookContract.View>(), ReadBookContra
                 override fun onNext(it: MutableList<Chapter>?) {
                     mRootView?.apply {
                         setDrawerData(it!!)
-                        //书架中的书籍不在重复更新内容（修复历史记录更新为0的情况）
-                        if (StringHelper.isEmpty(mBook.id)) {
+                        if (!isInitContent) {
                             setContentData(it!!)
                         }
                     }
