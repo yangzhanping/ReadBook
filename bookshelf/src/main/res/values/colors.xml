@@ -2,13 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FF5151</color>
 
     <color name="color_light_black">#5000</color>
     <!-- title 半透明背景颜色 -->
     <color name="color_title_bg">#CCFFFFFF</color>
     <color name="color_gray">#9a9a9a</color>
 
-    <color name="sys_line"> #cccccc</color>
+    <color name="sys_line">#cccccc</color>
     <color name="sys_bg2">#f5f5f5</color>
     <color name="sys_suggest_line">#d6d7d6</color>
 

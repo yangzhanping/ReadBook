@@ -5,30 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <com.classic.common.MultipleStatusView
+        android:id="@+id/multipleStatusView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:emptyView="@layout/shelf_layout_empty_view"
+        app:errorView="@layout/error_view"
+        app:loadingView="@layout/loading_view"
+        app:noNetworkView="@layout/no_network_view">
 
-        <com.classic.common.MultipleStatusView
-            android:id="@+id/multipleStatusView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shelf_rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:emptyView="@layout/shelf_layout_empty_view"
-            app:errorView="@layout/error_view"
-            app:loadingView="@layout/loading_view"
-            app:noNetworkView="@layout/no_network_view">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shelf_rv_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@color/alpha"
-                android:dividerHeight="30dp"
-                android:fadingEdge="none"
-                android:listSelector="@color/alpha"
-                android:overScrollMode="never" />
-        </com.classic.common.MultipleStatusView>
-    </RelativeLayout>
+            android:divider="@color/alpha"
+            android:dividerHeight="30dp"
+            android:fadingEdge="none"
+            android:listSelector="@color/alpha"
+            android:overScrollMode="never" />
+    </com.classic.common.MultipleStatusView>
 
     <LinearLayout
         android:id="@+id/shelf_chapter_list_view"
@@ -73,10 +68,10 @@
                 android:id="@+id/shelf_iv_sort"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
-                android:tag="降序"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/shelf_ic_sort_dsc" />
+                android:background="@mipmap/shelf_ic_sort_dsc"
+                android:tag="降序" />
         </RelativeLayout>
 
         <ListView

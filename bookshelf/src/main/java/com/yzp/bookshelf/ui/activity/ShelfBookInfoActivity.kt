@@ -1,6 +1,5 @@
 package com.yzp.bookshelf.ui.activity
 
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzp.bookshelf.databinding.ShelfActivityBookInfoBinding
 import com.yzp.bookshelf.mvp.contract.BookInfoContract
@@ -99,11 +98,11 @@ class ShelfBookInfoActivity : BaseActivity(), BookInfoContract.View {
     }
 
     override fun showLoading() {
-        binding.pbLoading.visibility = View.VISIBLE
+        binding.multipleStatusView.showLoading()
     }
 
     override fun dismissLoading() {
-        binding.pbLoading.visibility = View.GONE
+        binding.multipleStatusView.showContent()
     }
 
     private fun isBookCollected(book: Book): Boolean {
