@@ -48,9 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
-            app:srlAccentColor="@android:color/white"
             app:srlEnableRefresh="false"
-            app:srlPrimaryColor="@color/colorPrimary"
             tools:ignore="MissingClass">
 
             <com.scwang.smart.refresh.header.ClassicsHeader
