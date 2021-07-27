@@ -127,8 +127,8 @@ object BiQuGeReadUtil {
      * @param html
      * @return
      */
-    fun getBooksFromSearchHtml(html: String?): ArrayList<Book>? {
-        val books: ArrayList<Book> = ArrayList<Book>()
+    fun getBooksFromSearchHtml(html: String?): MutableList<Book>? {
+        val books: MutableList<Book> = mutableListOf()
         val doc = Jsoup.parse(html)
         val divs = doc.getElementsByClass("novelslistss")
         if (divs.size != 0) {

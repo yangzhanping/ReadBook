@@ -108,7 +108,7 @@ class ShelfBookInfoActivity : BaseActivity(), BookInfoContract.View {
     private fun isBookCollected(book: Book): Boolean {
         val mBook = BookDaoOpe.getInstance().query(this, book)
         return if (mBook != null) {
-            book.id = mBook.id
+            this.book = mBook
             true
         } else {
             false

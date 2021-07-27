@@ -29,12 +29,15 @@ class ShelfPresenter : BasePresenter<ShelfContract.View>(),
                     mRootView?.apply {
                         setData(t!!)
                     }
+                    mRootView?.apply { dismissLoading() }
                 }
 
                 override fun onSubscribe(d: Disposable?) {
+                    mRootView?.apply { showLoading() }
                 }
 
                 override fun onError(e: Throwable?) {
+                    mRootView?.apply { dismissLoading() }
                 }
             })
     }
