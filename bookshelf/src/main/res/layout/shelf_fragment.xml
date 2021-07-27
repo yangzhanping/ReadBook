@@ -43,18 +43,17 @@
             android:layout_height="1px"
             android:src="@color/sys_line" />
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/mRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
             app:srlAccentColor="@android:color/white"
-            app:srlEnableHeaderTranslationContent="false"
-            app:srlEnableLoadmore="false"
+            app:srlEnableRefresh="false"
             app:srlPrimaryColor="@color/colorPrimary"
             tools:ignore="MissingClass">
 
-            <com.scwang.smartrefresh.header.MaterialHeader
+            <com.scwang.smart.refresh.header.ClassicsHeader
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -80,6 +79,6 @@
                         android:paddingBottom="50dp" />
                 </com.classic.common.MultipleStatusView>
             </FrameLayout>
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
     </LinearLayout>
 </RelativeLayout>

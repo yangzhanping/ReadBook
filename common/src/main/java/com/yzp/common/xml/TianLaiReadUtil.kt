@@ -12,6 +12,22 @@ import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 
 object TianLaiReadUtil {
+
+    fun getNewChapter(html: String, book: Book): Book {
+        val doc: Document = Jsoup.parse(html)
+        val head: Element = doc.head()
+        val updateTime = head.select("meta[property=og:novel:update_time]").attr("content")
+        val newChapterTitle =
+            head.select("meta[property=og:novel:latest_chapter_name]").attr("content")
+        val newChapterUrl =
+            head.select("meta[property=og:novel:latest_chapter_url]").attr("content")
+
+        book.newestChapterTitle = newChapterTitle
+        book.newestChapterUrl = newChapterUrl
+        book.updateDate = updateTime
+        return book
+    }
+
     /**
      *  章节解析
      */
@@ -106,7 +122,7 @@ object TianLaiReadUtil {
                 } else if (infoStr.contains("类型：")) {
                     book.type = infoStr.replace("类型：", "").replace(" ", "")
                 } else if (infoStr.contains("更新时间：")) {
-                    book.updateDate = infoStr.replace("更新时间：", "").replace(" ", "")
+                    book.updateDate = infoStr.replace("更新时间：", "").replace(" ", "") + "00:00:00"
                 } else if (infoStr.contains("最新章节")) {
                     val newChapter = el.getElementsByTag("a").first()
                     book.newestChapterUrl =

@@ -11,12 +11,7 @@ interface ShelfContract {
         /**
          * 设置第一次请求的数据
          */
-        fun setData(bookList: MutableList<Book>)
-
-        /**
-         * 设置加载更多的数据
-         */
-        fun setMoreData(bookList: MutableList<Book>)
+        fun setData(bookList: MutableList<Book>, isRefresh: Boolean)
 
         /**
          * 显示错误信息
@@ -28,11 +23,11 @@ interface ShelfContract {
         /**
          * 获取首页精选数据
          */
-        fun requestData(context: Context)
+        fun requestData(context: Context, isRefresh: Boolean)
 
         /**
-         * 加载更多数据
+         * 更新最新章节
          */
-        fun loadMoreData()
+        fun refreshData(context: Context)
     }
 }

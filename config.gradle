@@ -65,8 +65,8 @@ ext {
             "bga-banner"           : 'cn.bingoogolapple:bga-banner:2.2.4@aar',
 
             //smartRefreshLayout 下拉刷新
-            "SmartRefreshLayout"   : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3',
-            "SmartRefreshHeader"   : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3',
+            "SmartRefreshLayout"   : 'com.scwang.smart:refresh-layout-kernel:2.0.3',
+            "SmartRefresh_header"   : 'com.scwang.smart:refresh-header-classics:2.0.3',
 
             //greendao
             "greendao"             : 'org.greenrobot:greendao:3.3.0',

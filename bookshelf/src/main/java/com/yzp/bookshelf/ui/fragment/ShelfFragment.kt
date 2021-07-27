@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.scwang.smartrefresh.header.MaterialHeader
+import com.scwang.smart.refresh.header.ClassicsHeader
 import com.yzp.bookshelf.R
 import com.yzp.bookshelf.databinding.ShelfFragmentBinding
 import com.yzp.bookshelf.mvp.contract.ShelfContract
@@ -28,11 +28,6 @@ class ShelfFragment : BaseFragment(), ShelfContract.View {
 
     //presenter
     private val mPresenter by lazy { ShelfPresenter() }
-
-    //refresh
-    private var isRefresh = false
-    private var mMaterialHeader: MaterialHeader? = null
-    private var loadingMore = false
 
     //adapter
     private var shelfAdapter: ShelfAdapter? = null;
@@ -57,14 +52,13 @@ class ShelfFragment : BaseFragment(), ShelfContract.View {
 
     private fun initRefresh() {
         //打开下拉刷新区域块背景:
-        mMaterialHeader = binding.mRefreshLayout.refreshHeader as MaterialHeader?
-        mMaterialHeader?.setShowBezierWave(true)
+        binding.mRefreshLayout.setRefreshHeader(ClassicsHeader(activity))
         //设置下拉刷新主题颜色
-        binding.mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
-        binding.mRefreshLayout.setEnableHeaderTranslationContent(true)
         binding.mRefreshLayout.setOnRefreshListener {
-            isRefresh = true
-            activity?.applicationContext?.let { mPresenter.requestData(it) }
+            activity?.applicationContext?.let {
+                mPresenter.refreshData(it)
+            }
+            binding.mRefreshLayout.finishRefresh()
         }
     }
 
@@ -74,28 +68,6 @@ class ShelfFragment : BaseFragment(), ShelfContract.View {
             val intent = Intent(activity, ShelfSearchBookActivity::class.java)
             startActivity(intent)
         }
-        //recyclerview
-        binding.mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    val childCount = binding.mRecyclerView.childCount
-                    val itemCount = binding.mRecyclerView.layoutManager?.itemCount
-                    val firstVisibleItem =
-                        (binding.mRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    if (firstVisibleItem + childCount == itemCount) {
-                        if (!loadingMore) {
-                            loadingMore = true
-                            mPresenter.loadMoreData()
-                        }
-                    }
-                }
-            }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-            }
-        })
     }
 
     override fun initData() {
@@ -109,26 +81,25 @@ class ShelfFragment : BaseFragment(), ShelfContract.View {
 
     override fun onResume() {
         super.onResume()
-        activity?.applicationContext?.let { mPresenter.requestData(it) }
+        activity?.applicationContext?.let { mPresenter.requestData(it, true) }
     }
 
-    override fun setData(bookList: MutableList<Book>) {
+    override fun setData(bookList: MutableList<Book>, isRefresh: Boolean) {
         if (bookList.size <= 0) {
             binding.multipleStatusView.showEmpty("当前无任何书籍")
             return
         }
+        if (isRefresh) {
+            //启动刷新
+            binding.mRefreshLayout.setEnableRefresh(true)
+            binding.mRefreshLayout.autoRefresh()
+        }
         binding.multipleStatusView.showContent()
         //adapter
         shelfAdapter = activity?.let { ShelfAdapter(it, bookList) }
-
         binding.mRecyclerView.adapter = shelfAdapter
         binding.mRecyclerView.layoutManager = linearLayoutManager
         binding.mRecyclerView.itemAnimator = DefaultItemAnimator()
-    }
-
-    override fun setMoreData(bookList: MutableList<Book>) {
-        loadingMore = false
-        shelfAdapter?.addItemData(bookList)
     }
 
     override fun showError(msg: String, errorCode: Int) {
