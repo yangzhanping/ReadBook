@@ -21,4 +21,6 @@
 
     <string name="download_already_all_tips">书籍已经缓存整本！</string>
     <string name="download_tips">书籍缓存中~</string>
+
+    <string name="delete_book">是否删除书籍？</string>
 </resources>

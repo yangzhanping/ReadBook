@@ -48,4 +48,9 @@ class ShelfAdapter(var context: Context, private var bookList: MutableList<Book>
         this.bookList.addAll(bookList)
         notifyDataSetChanged()
     }
+
+    fun deleteItem(position: Int) {
+        this.bookList.removeAt(position)
+        notifyDataSetChanged()
+    }
 }

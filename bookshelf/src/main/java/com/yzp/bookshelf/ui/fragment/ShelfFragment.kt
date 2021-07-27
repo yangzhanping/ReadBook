@@ -16,8 +16,13 @@ import com.yzp.bookshelf.mvp.contract.ShelfContract
 import com.yzp.bookshelf.mvp.presenter.ShelfPresenter
 import com.yzp.bookshelf.ui.activity.ShelfSearchBookActivity
 import com.yzp.bookshelf.ui.adapter.ShelfAdapter
+import com.yzp.bookshelf.view.DialogCreator
+import com.yzp.common.adapter.OnItemLongClickListener
 import com.yzp.common.base.BaseFragment
+import com.yzp.common.db.BookDaoOpe
+import com.yzp.common.db.ChapterDaoOpe
 import com.yzp.common.db.bean.Book
+import java.util.*
 
 @Route(path = "/shelf/ShelfFragment")
 class ShelfFragment : BaseFragment(), ShelfContract.View {
@@ -100,6 +105,21 @@ class ShelfFragment : BaseFragment(), ShelfContract.View {
         binding.mRecyclerView.adapter = shelfAdapter
         binding.mRecyclerView.layoutManager = linearLayoutManager
         binding.mRecyclerView.itemAnimator = DefaultItemAnimator()
+        shelfAdapter!!.setOnItemLongClickListener(object : OnItemLongClickListener {
+            override fun onItemLongClick(obj: Any?, position: Int): Boolean {
+                DialogCreator.createCommonDialog(activity,
+                    getString(R.string.tip),
+                    getString(R.string.delete_book),
+                    true,
+                    { dialog, which ->
+                        BookDaoOpe.getInstance().deleteData(activity, bookList[position])
+                        ChapterDaoOpe.getInstance().deleteData(activity, bookList[position].id)
+                        shelfAdapter!!.deleteItem(position)
+                    }
+                ) { dialog, which -> dialog.dismiss() }
+                return false
+            }
+        })
     }
 
     override fun showError(msg: String, errorCode: Int) {
