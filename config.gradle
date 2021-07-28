@@ -2,7 +2,7 @@
 
 ext {
 
-    isRelease = false
+    isRelease = true
 
     //服务器地址
     url = [
@@ -16,7 +16,7 @@ ext {
             minSdkVersion    : 19,
             targetSdkVersion : 30,
             versionCode      : 1,
-            versionName      : "1.0"
+            versionName      : "JZ_Beat_1.0"
     ]
 
     appID = [
@@ -46,7 +46,7 @@ ext {
             "adapter-rxjava3"      : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
 
             //leakCanary
-            "leakcanary-android"   : 'com.squareup.leakcanary:leakcanary-android:2.7',
+            //"leakcanary-android"   : 'com.squareup.leakcanary:leakcanary-android:2.7',
 
             //rxjava
             "rxjava"               : 'io.reactivex.rxjava3:rxjava:3.0.0',
