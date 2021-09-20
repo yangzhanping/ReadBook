@@ -1,1 +1,2 @@
-嘉泽免广告小说阅读器
+#嘉泽小说阅读器
+[项目地址](https://github.com/yangzhanping/ReadBook)
