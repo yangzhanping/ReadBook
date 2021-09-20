@@ -11,7 +11,7 @@
     网络框架：OKHTTP+Retrofit2+RxJava
     DB框架 :GreenDao
     图片框架：Glide
-    XML解析框架：Jsoup
+    HTML解析器：Jsoup
     
 ## 项目截图
 
