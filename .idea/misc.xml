@@ -3,10 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/app_activity_main.xml" value="0.12991927346115034" />
+        <entry key="bookshelf/src/main/res/drawable/bookinfo_btn_bg.xml" value="0.104" />
         <entry key="bookshelf/src/main/res/drawable/customfastscrolltheme.xml" value="0.1425" />
+        <entry key="bookshelf/src/main/res/drawable/font_example_bg.xml" value="0.104" />
+        <entry key="bookshelf/src/main/res/drawable/ic_launcher_background.xml" value="0.2065" />
         <entry key="bookshelf/src/main/res/drawable/lv_thumb.xml" value="0.1425" />
+        <entry key="bookshelf/src/main/res/drawable/search_btn_backcolor.xml" value="0.104" />
+        <entry key="bookshelf/src/main/res/drawable/search_et_backcolor.xml" value="0.104" />
+        <entry key="bookshelf/src/main/res/layout/shelf_activity_book_info.xml" value="0.165" />
+        <entry key="bookshelf/src/main/res/layout/shelf_adapter_search_book_item.xml" value="0.2682291666666667" />
+        <entry key="bookshelf/src/main/res/layout/shelf_adapter_search_history_item.xml" value="0.2682291666666667" />
         <entry key="bookshelf/src/main/res/layout/shelf_dialog_read_setting.xml" value="0.1" />
+        <entry key="bookshelf/src/main/res/layout/shelf_fragment.xml" value="0.2682291666666667" />
+        <entry key="bookshelf/src/main/res/layout/shelf_layout_empty_view.xml" value="0.12991927346115034" />
         <entry key="bookshelf/src/main/res/layout/shelf_readbook.xml" value="0.1" />
+        <entry key="bookshelf/src/main/res/layout/shelf_search_book.xml" value="0.1" />
+        <entry key="bookshelf/src/main/res/layout/shelf_title_base.xml" value="0.2682291666666667" />
+        <entry key="bookshelf/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2065" />
+        <entry key="bookstore/src/main/res/layout/layout_empty_view.xml" value="0.12991927346115034" />
+        <entry key="bookstore/src/main/res/layout/store_activity_main.xml" value="0.12991927346115034" />
+        <entry key="bookstore/src/main/res/layout/store_fragment.xml" value="0.12991927346115034" />
+        <entry key="user/src/main/res/layout/user_activity_main.xml" value="0.12991927346115034" />
+        <entry key="user/src/main/res/layout/user_fragment.xml" value="0.12991927346115034" />
       </map>
     </option>
   </component>

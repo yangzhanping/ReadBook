@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/08d27a652809dc2f61fc6aa7bedd4b16/transformed/jetified-bga-banner-2.2.4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/08d27a652809dc2f61fc6aa7bedd4b16/transformed/jetified-bga-banner-2.2.4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/08d27a652809dc2f61fc6aa7bedd4b16/transformed/jetified-bga-banner-2.2.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/48af9b5fdb34003bd29382c285c2c6c0/transformed/jetified-bga-banner-2.2.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48af9b5fdb34003bd29382c285c2c6c0/transformed/jetified-bga-banner-2.2.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48af9b5fdb34003bd29382c285c2c6c0/transformed/jetified-bga-banner-2.2.4/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.bingoogolapple/bga-banner/2.2.4/44d9510988d6e53cb2602c58eaa1cce3ee529c5c/bga-banner-2.2.4-javadoc.jar!/" />

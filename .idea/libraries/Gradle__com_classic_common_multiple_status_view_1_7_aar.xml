@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8a3bad5821eab008ae26b2c4afb87e40/transformed/jetified-multiple-status-view-1.7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8a3bad5821eab008ae26b2c4afb87e40/transformed/jetified-multiple-status-view-1.7/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8a3bad5821eab008ae26b2c4afb87e40/transformed/jetified-multiple-status-view-1.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b629587159a03508ceac55b90ef64aab/transformed/jetified-multiple-status-view-1.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b629587159a03508ceac55b90ef64aab/transformed/jetified-multiple-status-view-1.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b629587159a03508ceac55b90ef64aab/transformed/jetified-multiple-status-view-1.7/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.classic.common/multiple-status-view/1.7/aa1605b8984cc17adfa37a0368f23175748fd74c/multiple-status-view-1.7-javadoc.jar!/" />
