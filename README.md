@@ -2,7 +2,7 @@
 
 # 嘉泽小说阅读器
 
-        一直爱看小说，苦于各种小说广告，所以利用业余时间写了这个软件，目前为止只实现了部分功能，后续逐渐再完善吧；
+    一直爱看小说，苦于各种小说广告，所以利用业余时间写了这个软件，目前为止只实现了部分功能，后续逐渐再完善吧；
     现有功能包括小说搜索，增加书架、缓存、夜间模式、设置等。
     
 ## 项目
@@ -15,11 +15,19 @@
     
 ## 项目截图
 
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/home.png" width="200" height="400" alt="主页"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_1.png" width="200" height="400" alt="search_1"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_2.png" width="200" height="400" alt="search_2"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_3.png" width="200" height="400" alt="search_3"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_1.png" width="200" height="400" alt="read_1"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_2.png" width="200" height="400" alt="read_2"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_3.png" width="200" height="400" alt="read_3"/>
-<img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_4.png" width="200" height="400" alt="read_4"/>
+<p float="left">
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/home.png" width="200" height="400"/>
+</p>
+
+<p float="left">
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_1.png" width="200" />
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_2.png" width="200" /> 
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/search_3.png" width="200" />
+</p>
+
+<p float="left">
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_1.png" width="200" />
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_2.png" width="200" />
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_3.png" width="200" />
+        <img src="https://github.com/yangzhanping/ReadBook/blob/master/screenshot/read_4.png" width="200" />
+</p>
